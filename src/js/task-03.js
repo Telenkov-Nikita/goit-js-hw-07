@@ -18,7 +18,7 @@ const images = [
 const refGallery = document.querySelector('ul#gallery');
 let stringForHtml;
 let imgArray = images.forEach(image => {
-  stringForHtml += <li class="list-style"><img class="image-style" src="${image.url} alt="${image.alt}"></img></li>;
+  stringForHtml += '<li class="list-style"><img class="image-style" src="${image.url} alt="${image.alt}"></img></li>';
   return stringForHtml;
 });
 refGallery.insertAdjacentHTML('beforeend', stringForHtml);
