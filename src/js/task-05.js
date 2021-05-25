@@ -1,12 +1,13 @@
-const textInputRef = document.querySelector('input#name-input');
-const textDisplayElementRef = document.querySelector('span#name-output');
+const textInput = document.querySelector('input#name-input');
+const textDisplay = document.querySelector('span#name-output');
 
-textInputRef.addEventListener('input', textHandler);
+textInput.addEventListener('input', textHandler);
 
 function textHandler(event) {
-    if (event.target.value.length > 0) {
-        textDisplayElementRef.textContent = event.target.value;
+
+    if (event.target.value.length > 0 && /\S/.test(event.target.value)) {
+        textDisplay.textContent = event.target.value;
     } else {
-        textDisplayElementRef.textContent = 'незнакомец';
+        textDisplay.textContent = 'незнакомец';
     };
 };

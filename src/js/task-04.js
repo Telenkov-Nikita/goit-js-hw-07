@@ -1,17 +1,22 @@
-const btnIncrementRef = document.querySelector('button[data-action="increment"]');
-const btnDecrementRef = document.querySelector('button[data-action="decrement"]');
-const displayCounterValueRef = document.querySelector('#value');
 
-btnIncrementRef.addEventListener("click", increment);
-btnDecrementRef.addEventListener('click', decrement);
+const btnIncrement = document.querySelector('button[data-action="increment"]');
+const btnDecrement = document.querySelector('button[data-action="decrement"]');
+const displayCounter = document.querySelector('#value');
+
+btnIncrement.addEventListener("click", increment);
+btnDecrement.addEventListener("click", decrement);
+
+// btnIncrement.addEventListener("mousedown", increment);
+// btnDecrement.addEventListener("mousedown", decrement);
+
 
 let counterValue = 0;
 
+
 function increment (event) {
-    counterValue += 1;
-    displayCounterValueRef.textContent = counterValue;
+    displayCounter.textContent = ++counterValue;
 };
 function decrement (event) {
-    counterValue -= 1;
-    displayCounterValueRef.textContent = counterValue;
+    displayCounter.textContent = --counterValue;
 };
+

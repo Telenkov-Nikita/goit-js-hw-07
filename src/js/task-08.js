@@ -1,30 +1,57 @@
 
-const btnCreateRef = document.querySelector('button[data-action="render"]');
-const btnDestroyRef = document.querySelector('button[data-action="destroy"]');
-const inputQntityRef = document.querySelector('div#controls input');
-const bigBox = document.querySelector('div#boxes');
 
-let startWidth = 20;
-let startHeight = 20;
+
+const inQn = document.querySelector('#controls input');
+const btnCreate = document.querySelector('button[data-action="render"]');
+const btnDestroy = document.querySelector('button[data-action="destroy"]');
+const bigBox = document.querySelector('#boxes');
+
+
+
+btnCreate.addEventListener('click', () => createBoxes(inQn.value));
+btnDestroy.addEventListener('click', destroyBoxes);
+
+let oldSize;
+if (oldSize == null){nextSize(null);}
 
 
 function createBoxes(amount) {
-    let num = inputQntityRef.value;
-    for (let i = 0; i < num; i += 1) {
-        const addDiv = document.createElement("div");
-        startWidth += 10;
-        startHeight += 10;
-        addDiv.style = 'background-color: ' + '#' + (Math.random().toString(16) + '000000').substring(2, 8).toUpperCase() + ';' + 'width: ${startWidth}px; height: ${startHeight}px;';
-        bigBox.appendChild(addDiv);
-        console.log(bigBox.children);
-    }
-}
+  let newDivs = [];
+  for (let i = 0; i < amount; i++) {
+    const newDiv = document.createElement('div');
     
+    // nextSize(10);
+    newDiv.style.width = `${nextSize(10)}px`;
+    newDiv.style.height = newDiv.style.width;
+    newDiv.style.backgroundColor = ColorBoxes();
+    newDivs.push(newDiv);
+  }
+  bigBox.append(...newDivs);
+}
+
 function destroyBoxes(event) { 
-        bigBox.innerHTML = '';
-        startWidth = 20;
-        startHeight = 20;
+     bigBox.innerHTML = '';
+     nextSize(null);
 };
 
-btnCreateRef.addEventListener('click', createBoxes);
-btnDestroyRef.addEventListener('click', destroyBoxes);
+function nextSize(nextSize) {
+    if (nextSize == null) {
+        oldSize = 30;
+        inQn.value = null; // в умові не вказано, але галаю так правильніше        
+    } else {
+        return oldSize += nextSize; 
+    } 
+}
+
+function ColorBoxes() {
+    return '#' + (((1 << 24) * Math.random()) | 0).toString(16);
+ }
+
+
+
+
+
+
+
+
+
